@@ -1,7 +1,6 @@
-import react, { useState, useEffect} from 'react';
-import './App.css';
-import {HashRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
-import MUIDrawer from './components/Drawer';
+import { useState, useEffect} from 'react';
+import {HashRouter as Router, Route, Switch, useHistory, Redirect} from 'react-router-dom'
+
 import SwDrawer from './components/SwDrawer';
 import { makeStyles } from '@mui/styles';
 import Film from './components/Film';
@@ -41,21 +40,22 @@ function App() {
   const classes = useStyles();
   return (
 
-    <div className="App">
+    <div>
       {console.log(flags)}
   <Router>
       
       
-  <Route exact path="/" component={()=><Film film={data[0]} index={0} flags={flags} isFavorite={isFavorite}/>} />
+  <Redirect from="/" to="/A new hope" />
         <Switch>
-          {data ? data.map( (e,i) => {
+        
+          {data && data.map( (e,i) => {
             
             return (
               
               <Route exact path={`/${e.title}`} 
               component={()=>{return (<Film film={e} index={i} flags={flags} isFavorite={isFavorite}/>)}} />
             )
-          }) : "Loading..."}
+          })}
         </Switch>
       {flags && <SwDrawer data={data} flags={flags}/>}
 
@@ -64,6 +64,6 @@ function App() {
     </div>
   );
 }
-//יובלים פרדס חנה ובריאות הילד חדרה
+
 
 export default App;
