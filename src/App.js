@@ -16,16 +16,29 @@ const requestData = () => fetch(URL).then(res=>res.json());
 function App() {
 
   const [data, setData] = useState([]);
-  
+
+  const [flags, setFlags] = useState([false, false, false, false, false, false]);
+
   useEffect( () => {
+    updateFlags();
     requestData().then(data => setData(data.results));
   }, []);
 
+  const updateFlags = () => {
+    let temp = JSON.parse(localStorage.getItem('flags'));
+    setFlags(temp);
+  }
+
+  const isFavorite = (index) => {
+
+    flags[index] = !flags[index];
+    setFlags(flags);
+  }
   const classes = useStyles();
   return (
 
     <div className="App">
-      
+      {console.log(flags)}
   <Router>
       
       
@@ -35,11 +48,11 @@ function App() {
             
             return (
               
-              <Route exact path={`/${e.title}`} component={()=>{return (<Film film={e} index={i}/>)}} />
+              <Route exact path={`/${e.title}`} component={()=>{return (<Film film={e} index={i} flags={flags} isFavorite={isFavorite}/>)}} />
             )
           })}
         </Switch>
-      <SwDrawer data={data}/>
+      {flags && <SwDrawer data={data} flags={flags}/>}
 
 
   </Router>

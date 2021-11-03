@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -24,6 +24,12 @@ const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
   
+    const [myTry, setMyTry] = useState(false);
+    const [favs, setFavs] = useState([])
+    useEffect( () => {
+        setFavs(props.flags);
+      }, []);
+
     let history = useHistory();
   
     const { window } = props;
@@ -44,8 +50,10 @@ function ResponsiveDrawer(props) {
                 return (
                   <>
                   
-                  <ListItem key={e.episode_id} button onClick={()=>history.push(`/${e.title}`)}>
-                  <ListItemIcon><StarBorderIcon/></ListItemIcon>
+                  <ListItem key={e.episode_id} button onClick={()=>{
+                      history.push(`/${e.title}`);
+                      }}>
+                  {/* <ListItemIcon>{favs && favs[i] ? <StarIcon/> : <StarBorderIcon/>}</ListItemIcon> */}
                   <ListItemText primary={e.title}/>
                 </ListItem>
                 </>

@@ -48,8 +48,8 @@ const MUIDrawer = (props) => {
                 return (
                   <>
                   
-                  <ListItem key={e.episode_id} button onClick={()=>history.push(`/${e.title}`)}>
-                  <ListItemIcon><StarBorderIcon/></ListItemIcon>
+                  <ListItem key={e.episode_id} button onClick={()=>{history.push(`/${e.title}`);}}>
+                  
                   <ListItemText primary={e.title}/>
                 </ListItem>
                 </>
