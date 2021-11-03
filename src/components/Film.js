@@ -36,11 +36,11 @@ export default function Film(props) {
                 <Item>title: {props.film.title}</Item>
                 <Item>{props.film.opening_crawl}</Item>
                 <Item>episode id: {props.film.episode_id}</Item>
-                <Item>{props.flags[props.index] ? 'true' : 'false'}</Item>
                 <Item>
+                    Chosen as a favorite episode:
                     <List>
                         <ListItem>
-                            <ListItemIcon onClick={()=>
+                            <ListItemIcon style={{cursor: 'pointer'}} onClick={()=>
                     {props.isFavorite(props.index);
                      setRef(!ref);
                      localStorage.setItem('flags', JSON.stringify(props.flags))
