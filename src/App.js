@@ -1,6 +1,6 @@
 import react, { useState, useEffect} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import MUIDrawer from './components/Drawer';
 import SwDrawer from './components/SwDrawer';
 import { makeStyles } from '@mui/styles';
